@@ -1,0 +1,7 @@
+node_modules/
+dist/
+typings/
+log/
+cert/
+build/
+.vscode
