@@ -88,46 +88,26 @@ export class API {
         });
         // this is for faders
 
-        this.apiRoutes.post('/devices/fade/:id/:command', (req, res) => {
+        this.apiRoutes.post('/devices/:id/:command', (req, res) => {
             res.type('json'); // set content-type
             let nodeid: number = parseInt(req.params.id, 10);
             let level: number = utils.levelBound(parseInt(req.body.level, 10));
             let command: string = req.params.command;
             let status = 'ok';
 
-            if (command === 'on') {
+            if (command === 'fadeOn') {
                 this.zcontrol.zwave.setValue(nodeid, 38, 1, 0, 99);
-            } else if (command === 'off') {
+            } else if (command === 'fadeOff') {
                 this.zcontrol.zwave.setValue(nodeid, 38, 1, 0, 0);
             } else if (command === 'fade') {
                 this.zcontrol.zwave.setValue(nodeid, 38, 1, 0, level);
-            } else {
-                command = 'noop';
-                status = 'fail';
-            }
-            let response = {
-                status: status,
-                command: command,
-                nodeid: nodeid,
-                level: level
-            };
-            res.json(response);
-
-        });
-         // this is for faders
-
-        this.apiRoutes.post('/devices/toggle/:id/:command', (req, res) => {
-            res.type('json'); // set content-type
-            let nodeid: number = parseInt(req.params.id, 10);
-            let level: number = utils.levelBound(parseInt(req.body.level, 10));
-            let command: string = req.params.command;
-            let status = 'ok';
-
-            if (command === 'on') {
+            }else if (command === 'toggleOn') {
                 this.zcontrol.zwave.setValue(nodeid, 37, 1, 0, true);
-            } else if (command === 'off') {
+            }
+            else if (command === 'toggleOff') {
                 this.zcontrol.zwave.setValue(nodeid, 37, 1, 0, false);
-            } else {
+            }
+             else {
                 command = 'noop';
                 status = 'fail';
             }
