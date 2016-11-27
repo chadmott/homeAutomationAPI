@@ -45,7 +45,7 @@ describe('health route should be accessible', function(){
             .expect(200, done);
     });
 });
-xdescribe('routes should be inaccessable without authentication', function(){
+describe('routes should be inaccessable without authentication', function(){
     it('should deny user access to control device', function(done){
          request(server)
             .get('/api/authenticated')

@@ -1,4 +1,4 @@
-//general functions
+// general functions
 export class Utils {
     public levelBound(level: number ): number {
         if (level > 99) {

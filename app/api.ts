@@ -35,7 +35,7 @@ export class API {
     apiRoutes = express.Router();
     server;
     startServer() {
-        //  this.app.use(helmet());
+        // this.app.use(helmet());
         this.app.use(morgan('dev'));
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use(bodyParser.json());
@@ -118,6 +118,7 @@ export class API {
         // instantiate our API and use the routes
         this.app.use('/api', this.apiRoutes);
         this.server = this.app.listen(config.port);
+        
         return this.app;
     }
 }
